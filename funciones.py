@@ -30,3 +30,7 @@ def guardar_estadisticas_csv(datos):
         print("¡Índice inválido!")
         return
     jugador = datos[indice]
+
+
+
+datos_jugadores = cargar_datos()
