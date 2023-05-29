@@ -265,3 +265,18 @@ def promedio_de_puntos_por_partido_sin_el_de_menor_cantidad_de_puntos(datos_juga
 
     
     print(f"Promedio de puntos por partido del equipo (excluyendo a {nombre_menor}): {promedio_equipo}")
+#EJ 17
+def jugador_con_mayores_logros(datos_jugadores):
+    """
+    Esta función recibe una lista de datos de jugadores y encuentra al jugador con la mayor cantidad de logros.
+    Parámetros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y los logros de cada jugador.
+    """
+    logros_maximos = 0
+    nombre_logros_maximos = None
+    for jugador in datos_jugadores:
+        cantidad_logros = len(jugador["logros"])
+        if cantidad_logros > logros_maximos :
+            logros_maximos = cantidad_logros   
+            nombre_logros_maximos = jugador["nombre"]
+
+    print(nombre_logros_maximos, logros_maximos)
