@@ -2,7 +2,7 @@
 from funciones import cargar_datos, mostrar_datos, datos_jugadores, mostrar_estadisticas_jugador, guardar_estadisticas_csv, buscar_jugador_Y_mostrar_logros,promedio_de_puntos_por_partido, buscar_jugador_salon_de_la_fama
 from funciones import jugador_con_mayores_rebotes_totales, jugador_con_mayor_porcentaje_de_tiro_de_campo, jugador_con_mayor_cantidad_de_asistencia_totales, jugadores_con_mayor_promedio_de_puntos_por_partido
 from funciones import jugador_con_mayor_cantidad_de_robos_totales,jugadores_con_mayor_promedio_de_asistencias_por_partido , jugador_con_mayor_cantidad_de_bloqueos_totales,jugadores_con_mayor_promedio_de_rebotes_por_partido , jugadores_con_mayor_porcentaje_de_tiros_libres,jugador_con_mayores_logros
-from funciones import jugadores_con_mayor_porcentaje_de_tiros_triples,promedio_de_puntos_por_partido_sin_el_de_menor_cantidad_de_puntos , jugador_con_mayor_cantidad_de_temporadas, mostrar_menu, obtener_eleccion
+from funciones import jugadores_con_mayor_porcentaje_de_tiros_triples,promedio_de_puntos_por_partido_sin_el_de_menor_cantidad_de_puntos , jugador_con_mayor_cantidad_de_temporadas, mostrar_menu, obtener_eleccion, clear_console
 
 datos_jugadores = cargar_datos()
 while True:
@@ -66,6 +66,4 @@ while True:
         case "19":
             jugador_con_mayor_cantidad_de_temporadas(datos_jugadores)
             break
-        case 0:
-
-            break
+    clear_console()
