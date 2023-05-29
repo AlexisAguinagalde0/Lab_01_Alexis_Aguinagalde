@@ -239,3 +239,29 @@ def jugadores_con_mayor_porcentaje_de_tiros_libres(datos_jugadores):
         if valor_a_ingresar < jugador["estadisticas"]["porcentaje_tiros_libres"]:
             lista_aux[jugador["nombre"]] = jugador["estadisticas"]["porcentaje_tiros_libres"]
     print(lista_aux)
+#EJ 16
+def promedio_de_puntos_por_partido_sin_el_de_menor_cantidad_de_puntos(datos_jugadores):
+    """
+    Esta función recibe una lista de datos de jugadores y calcula el promedio de puntos por partido del equipo excluyendo al jugador que tiene la menor cantidad de puntos por partido.
+    Parámetros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
+    """
+    menor_promedio = float('inf')
+    nombre_menor = None
+
+    for jugador in datos_jugadores:
+        promedio_puntos = float(jugador["estadisticas"]["promedio_puntos_por_partido"])
+        if promedio_puntos < menor_promedio:
+            menor_promedio = promedio_puntos
+            nombre_menor = jugador["nombre"]
+    total_puntos = 0
+    num_jugadores = 0
+
+    for jugador in datos_jugadores:
+        if jugador["nombre"] != nombre_menor:
+            total_puntos += float(jugador["estadisticas"]["promedio_puntos_por_partido"])
+            num_jugadores += 1
+
+    promedio_equipo = total_puntos / num_jugadores
+
+    
+    print(f"Promedio de puntos por partido del equipo (excluyendo a {nombre_menor}): {promedio_equipo}")
