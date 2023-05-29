@@ -71,7 +71,28 @@ def buscar_jugador_Y_mostrar_logros(datos_jugadores):
                 print(logro)
             break
     if not nombre_encontrado:
-        print("Nombre no encontrado")          
+        print("Nombre no encontrado")  
+        
+#EJ 5
+"""
+Calcula y muestra el promedio total de puntos por partido de los jugadores en la lista proporcionada.
+Parámetros: datos_jugadores (list) - Una lista de diccionarios que contiene los datos de los jugadores.
+Retorna: El promedio total de puntos por partido.
+
+"""
+def promedio_de_puntos_por_partido(datos_jugadores):
+    suma_puntos_por_partido = 0
+    cantidad_puntos_por_partido = 0
+    promedio_total = 0    
+    for jugador in datos_jugadores:
+        if jugador["estadisticas"]["promedio_puntos_por_partido"]:
+            suma_puntos_por_partido += float(jugador["estadisticas"]["promedio_puntos_por_partido"])
+            cantidad_puntos_por_partido += 1
+    promedio_total = suma_puntos_por_partido / cantidad_puntos_por_partido
+    print("El promedio total de los jugadores es", promedio_total, "cm") 
+
+    return promedio_total
+        
 
 
 
