@@ -280,3 +280,67 @@ def jugador_con_mayores_logros(datos_jugadores):
             nombre_logros_maximos = jugador["nombre"]
 
     print(nombre_logros_maximos, logros_maximos)
+#EJ 18
+def jugadores_con_mayor_porcentaje_de_tiros_triples(datos_jugadores):
+    """
+    Esta función recibe una lista de datos de jugadores y solicita al usuario ingresar un valor a comparar. Luego, encuentra a los jugadores cuyo porcentaje de tiros triples es mayor que el valor ingresado.
+    Parámetros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
+    """
+    valor_a_ingresar = int(input("Ingrese un valor a comparar: "))
+    lista_aux = {}
+    for jugador in datos_jugadores:
+        if valor_a_ingresar < jugador["estadisticas"]["porcentaje_tiros_triples"]:
+            lista_aux[jugador["nombre"]] = jugador["estadisticas"]["porcentaje_tiros_triples"]
+    print(lista_aux)
+#EJ 19
+def jugador_con_mayor_cantidad_de_temporadas(datos_jugadores):
+    """
+    Esta función recibe una lista de datos de jugadores y encuentra al jugador con la mayor cantidad de temporadas.
+    Parámetros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
+    """
+    temporadas_maximos = 0
+    nombre_temporadas_maximos = None
+    for jugador in datos_jugadores:
+        cantidad_temporadas = jugador["estadisticas"]["temporadas"]
+        if cantidad_temporadas > temporadas_maximos :
+            temporadas_maximos = cantidad_temporadas   
+            nombre_temporadas_maximos = jugador["nombre"]
+    print(nombre_temporadas_maximos, temporadas_maximos)
+
+
+datos_jugadores = cargar_datos()
+
+def mostrar_menu():
+    """
+    Esta función imprime en pantalla el menú de opciones para el programa.
+    """
+    print("============================================================ MENÚ ======================================================")
+    print("1. Mostrar la lista de todos los jugadores. \n2. Mostrar estadisticas de un jugador. \n3. Exportar estadisticas de jugador anterior a CSV. \n4. Buscar jugador por nombre y mostrar sus logros")
+    print("5. Mostrar Promedio de puntos por partido de todo el equipo Dream Team, Ordenado por nombre de Manera ascendente. \n6. Ingrese un jugador para saber si esta en el salon de la fama del baloncesto")
+    print("7. Mostrar jugador con mayor cantidad de Rebotes Totales. \n8. Mostrar jugador con mayor porcentaje de tiros de campo. \n9. Mostrar jugador con mayor cantidad de asistencias Totales")
+    print("10. Ingresa un valor para comparar que jugadores promediaron mas puntos por partido que el valor ingresado. \n11. Ingresa un valor para comparar que jugadores promediaron mas rebotes por partido que el valor ingresado")
+    print("12. Ingresa un valor para comparar que jugadores promediaron mas asistencias por partido que el valor ingresado. \n13. Mostrar jugador con mayor cantidad de Robos Totales. \n14. Mostrar jugador con mayor cantidad de Bloqueos Totales")
+    print("15. Ingresa un valor para comparar que jugadores que tienen un porcentaje de tiros libres mayor que el valor ingresado. \n16. Mostrar promedio de puntos por partido excluyendo al jugador con menor cantidad de puntos por partido")
+    print("17. Mostrar jugador con mayor cantidad de Logros obtenidos. \n18. Ingresa un valor para comparar que jugadores que tienen un porcentaje de tiros triples mayor que el valor ingresado.\n19. Mostrar jugador con mayor cantidad de Temporadas Jugadas")
+    print("20. Ingresar un valor para ordenar jugadores por su posicion en la cancha, que tienen un porcentaje de tiros de campo superior a el valor ingresado")
+    print("=======================================================================================================================")
+    
+def clear_console() -> None:
+    """
+    It waits for the user to hit enter 
+    to clear the console and redisplay the appropriate thing.
+    """
+    _ = input('Press a key to continue...')
+    os.system('cls')
+
+
+
+def obtener_eleccion():
+    """
+    Esta función solicita al usuario ingresar su opción del menú y verifica que sea una cadena de texto.
+    Retorna la opción ingresada por el usuario como una cadena de texto.
+    """
+    respuesta = None
+    while respuesta is None or not isinstance(respuesta, str):
+        respuesta = input("Ingrese su opción: ")
+    return respuesta
