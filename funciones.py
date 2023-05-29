@@ -226,3 +226,16 @@ def jugador_con_mayor_cantidad_de_bloqueos_totales(datos_jugadores):
             nombre_bloqueos_maximos = jugador["nombre"]
 
     print(nombre_bloqueos_maximos, bloqueos_maximos)
+    
+#EJ 15
+def jugadores_con_mayor_porcentaje_de_tiros_libres(datos_jugadores):
+    """
+    Esta función recibe una lista de datos de jugadores y solicita al usuario ingresar un valor a comparar. Luego, encuentra a los jugadores cuyo porcentaje de tiros libres es mayor que el valor ingresado.
+    Parámetros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
+    """
+    valor_a_ingresar = int(input("Ingrese un valor a comparar: "))
+    lista_aux = {}
+    for jugador in datos_jugadores:
+        if valor_a_ingresar < jugador["estadisticas"]["porcentaje_tiros_libres"]:
+            lista_aux[jugador["nombre"]] = jugador["estadisticas"]["porcentaje_tiros_libres"]
+    print(lista_aux)
