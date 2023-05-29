@@ -93,6 +93,24 @@ def promedio_de_puntos_por_partido(datos_jugadores):
 
     return promedio_total
         
+#EJ 6
+def buscar_jugador_salon_de_la_fama(datos_jugadores):
+    """
+    Busca un jugador por su nombre en una lista de datos de jugadores y muestra si es miembro del Salón de la Fama del Baloncesto.
+    Parámetros: datos_jugadores (list) - Una lista de diccionarios que contiene los datos de los jugadores.
+    """
+    nombre_a_buscar = input("Ingrese el nombre a buscar : ")
+    for jugador in datos_jugadores:
+        nombres = jugador["nombre"]
+        logros = jugador["logros"]
+        bandera = True
+        if re.search(nombre_a_buscar, nombres, re.IGNORECASE):
+            for logro in logros:
+                if logro == "Miembro del Salon de la Fama del Baloncesto":
+                    print("El jugador",jugador["nombre"], "es miembro del Salon de la Fama del Baloncesto")
+                    bandera = False
+            if bandera:
+                    print("El jugador", jugador["nombre"] ,"no es miembro del Salon de la Fama del Baloncesto")
 
 
 
