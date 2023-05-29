@@ -211,3 +211,18 @@ def jugador_con_mayor_cantidad_de_robos_totales(datos_jugadores):
             nombre_robos_maximos = jugador["nombre"]
 
     print(nombre_robos_maximos, robos_maximos)
+#EJ 14
+def jugador_con_mayor_cantidad_de_bloqueos_totales(datos_jugadores):
+    """
+    Esta función recibe una lista de datos de jugadores y encuentra al jugador con la mayor cantidad de bloqueos totales.
+    Parámetros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
+    """
+    bloqueos_maximos = 0
+    nombre_bloqueos_maximos = None
+    for jugador in datos_jugadores:
+        cantidad_bloqueos_totales = jugador["estadisticas"]["bloqueos_totales"]
+        if cantidad_bloqueos_totales > bloqueos_maximos :
+            bloqueos_maximos = cantidad_bloqueos_totales   
+            nombre_bloqueos_maximos = jugador["nombre"]
+
+    print(nombre_bloqueos_maximos, bloqueos_maximos)
