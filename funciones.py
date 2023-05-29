@@ -111,6 +111,21 @@ def buscar_jugador_salon_de_la_fama(datos_jugadores):
                     bandera = False
             if bandera:
                     print("El jugador", jugador["nombre"] ,"no es miembro del Salon de la Fama del Baloncesto")
+#EJ 7
+def jugador_con_mayores_rebotes_totales(datos_jugadores):
+    """
+    Encuentra y muestra el jugador con la mayor cantidad de rebotes totales en la lista proporcionada.
+    Parámetros: datos_jugadores (list) - Una lista de diccionarios que contiene los datos de los jugadores.
+    """
+    rebotes_totales_maximos = 0
+    nombre_rebotes_maximos = None
+    for jugador in datos_jugadores:
+        cantidad_rebotes = jugador["estadisticas"]["rebotes_totales"]
+        if cantidad_rebotes > rebotes_totales_maximos :
+            rebotes_totales_maximos = cantidad_rebotes   
+            nombre_rebotes_maximos = jugador["nombre"]
+
+    print(nombre_rebotes_maximos, rebotes_totales_maximos)
 
 
 
