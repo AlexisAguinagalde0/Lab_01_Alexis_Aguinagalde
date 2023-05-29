@@ -196,4 +196,18 @@ def jugadores_con_mayor_promedio_de_asistencias_por_partido(datos_jugadores):
         if valor_a_ingresar < jugador["estadisticas"]["promedio_asistencias_por_partido"]:
             lista_aux[jugador["nombre"]] = jugador["estadisticas"]["promedio_asistencias_por_partido"]
     print(lista_aux)
-        
+#EJ 13 
+def jugador_con_mayor_cantidad_de_robos_totales(datos_jugadores):
+    """
+    Esta función recibe una lista de datos de jugadores y encuentra al jugador con la mayor cantidad de robos totales.
+    Parámetros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
+    """
+    robos_maximos = 0
+    nombre_robos_maximos = None
+    for jugador in datos_jugadores:
+        cantidad_robos_totales = jugador["estadisticas"]["robos_totales"]
+        if cantidad_robos_totales > robos_maximos :
+            robos_maximos = cantidad_robos_totales   
+            nombre_robos_maximos = jugador["nombre"]
+
+    print(nombre_robos_maximos, robos_maximos)
