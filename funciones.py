@@ -159,3 +159,16 @@ def jugador_con_mayor_cantidad_de_asistencia_totales(datos_jugadores):
             nombre_asistencias_maximas = jugador["nombre"]
 
     print(nombre_asistencias_maximas, asistencias_maximas)
+
+#EJ 10 
+def jugadores_con_mayor_promedio_de_puntos_por_partido(datos_jugadores):
+    """
+    Esta función recibe una lista de datos de jugadores y solicita al usuario ingresar un valor a comparar. Luego, encuentra a los jugadores cuyo promedio de puntos por partido es mayor que el valor ingresado.
+    Parámetros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
+    """
+    valor_a_ingresar = int(input("Ingrese un valor a comparar: "))
+    lista_aux = {}
+    for jugador in datos_jugadores:
+        if valor_a_ingresar < jugador["estadisticas"]["promedio_puntos_por_partido"]:
+            lista_aux[jugador["nombre"]] = jugador["estadisticas"]["promedio_puntos_por_partido"]
+    print(lista_aux)
