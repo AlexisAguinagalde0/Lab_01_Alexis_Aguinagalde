@@ -127,5 +127,20 @@ def jugador_con_mayores_rebotes_totales(datos_jugadores):
 
     print(nombre_rebotes_maximos, rebotes_totales_maximos)
 
+#EJ 8
+def jugador_con_mayor_porcentaje_de_tiro_de_campo(datos_jugadores):
+    """
+    Esta función recibe una lista de datos de jugadores y encuentra al jugador con el mayor porcentaje de tiros de campo.
+    Parametros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
+    
+    """
+    porcentaje_maximo = 0
+    nombre_porcentaje_maximo = None
+    for jugador in datos_jugadores:
+        cantidad_porcentajes = jugador["estadisticas"]["porcentaje_tiros_de_campo"]
+        if cantidad_porcentajes > porcentaje_maximo :
+            porcentaje_maximo = cantidad_porcentajes   
+            nombre_porcentaje_maximo = jugador["nombre"]
 
+    print(nombre_porcentaje_maximo, porcentaje_maximo)
 
