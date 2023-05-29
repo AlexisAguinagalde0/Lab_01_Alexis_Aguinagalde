@@ -144,3 +144,18 @@ def jugador_con_mayor_porcentaje_de_tiro_de_campo(datos_jugadores):
 
     print(nombre_porcentaje_maximo, porcentaje_maximo)
 
+#EJ 9
+def jugador_con_mayor_cantidad_de_asistencia_totales(datos_jugadores):
+    """
+    Esta función recibe una lista de datos de jugadores y encuentra al jugador con la mayor cantidad de asistencias totales.
+    Parámetros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
+    """
+    asistencias_maximas = 0
+    nombre_asistencias_maximas = None
+    for jugador in datos_jugadores:
+        cantidad_asistencias = jugador["estadisticas"]["asistencias_totales"]
+        if cantidad_asistencias > asistencias_maximas :
+            asistencias_maximas = cantidad_asistencias   
+            nombre_asistencias_maximas = jugador["nombre"]
+
+    print(nombre_asistencias_maximas, asistencias_maximas)
