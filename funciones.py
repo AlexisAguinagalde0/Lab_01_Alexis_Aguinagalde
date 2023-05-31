@@ -19,7 +19,8 @@ def cargar_datos():
 def mostrar_datos(datos_jugadores):
     for jugador in datos_jugadores:
         print(f"{jugador['nombre']} - {jugador['posicion']}")
-
+estadisticas_seleccionadas = None
+jugador_estadisticas = None
 #EJ 2        
 def mostrar_estadisticas_jugador(datos_jugadores):
     """
@@ -43,12 +44,17 @@ def mostrar_estadisticas_jugador(datos_jugadores):
         print("¡Índice inválido!")
         jugador_seleccionado = None
         estadisticas_seleccionadas = False
-    return jugador_seleccionado, estadisticas_seleccionadas
+    return jugador_estadisticas, estadisticas_seleccionadas
         
 #EJ 3
-def guardar_estadisticas_csv(datos_jugadores, estadisticas_seleccionadas):
-    
-    
+def guardar_estadisticas_csv(estadisticas_seleccionadas, jugador_estadisticas):
+    if estadisticas_seleccionadas:
+        nombre_archivo = input("Ingrese el nombre del archivo CSV: ")
+        with open(nombre_archivo, 'w', newline='') as archivo_csv:
+            writer = csv.writer(archivo_csv)
+            for key, value in jugador_estadisticas.items():
+                writer.writerow([key, value])
+        print("Archivo csv creado")
     return
 
 #EJ 4
@@ -307,6 +313,55 @@ def jugador_con_mayor_cantidad_de_temporadas(datos_jugadores):
             nombre_temporadas_maximos = jugador["nombre"]
     print(nombre_temporadas_maximos, temporadas_maximos)
 
+    
+##################################################################ParcialExtra##############################################################################################
+#EJ 1
+def cantidad_de_jugadores_por_posicion_en_la_cancha(datos_jugadores):    
+    dic_aux = {}
+    for jugador in datos_jugadores:
+        if jugador["posicion"] in dic_aux:
+            dic_aux[jugador["posicion"]] = dic_aux[jugador["posicion"]] + 1
+        else:
+            dic_aux[jugador["posicion"]] = 1
+    for clave, valor in dic_aux.items():
+        print("{0}: {1}".format(clave, valor))
+    return
+
+#EJ 3
+def obtener_mejor_jugador(datos_jugadores, clave_a_buscar):
+    mejor_jugador = ""
+    mejor_estadistica = 0
+    for jugador in datos_jugadores:
+        estadistica = jugador["estadisticas"][clave_a_buscar]
+        if estadistica > mejor_estadistica:
+            mejor_jugador = jugador["nombre"]
+            mejor_estadistica = jugador["estadisticas"][clave_a_buscar]
+            formato_de_estadistica = (str(clave_a_buscar).replace("_", " ")).capitalize()
+    # print("Mejor",formato_de_estadistica,":" ,mejor_jugador, mejor_estadistica)
+    return mejor_jugador, mejor_estadistica, formato_de_estadistica
+
+
+def imprimir_mejores_jugadores_de_su_categoria(datos_jugadores):
+    categorias = [
+        "temporadas",
+        "puntos_totales",
+        "promedio_puntos_por_partido",
+        "rebotes_totales",
+        "promedio_rebotes_por_partido",
+        "asistencias_totales",
+        "promedio_asistencias_por_partido",
+        "robos_totales",
+        "bloqueos_totales",
+        "porcentaje_tiros_de_campo",
+        "porcentaje_tiros_libres",
+        "porcentaje_tiros_triples"
+    ]
+    for categoria in categorias:
+        mejor_jugador, mejor_estadistica, formato_de_estadistica = obtener_mejor_jugador(datos_jugadores, categoria)
+        print("Mejor", formato_de_estadistica + ":", mejor_jugador, "({})".format(mejor_estadistica))
+###########################################################################################################################################################
+
+
 
 datos_jugadores = cargar_datos()
 
@@ -344,3 +399,5 @@ def obtener_eleccion():
     while respuesta is None or not isinstance(respuesta, str):
         respuesta = input("Ingrese su opción: ")
     return respuesta
+
+

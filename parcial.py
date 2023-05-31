@@ -1,8 +1,8 @@
 
-from funciones import cargar_datos, mostrar_datos, datos_jugadores, mostrar_estadisticas_jugador, guardar_estadisticas_csv, buscar_jugador_Y_mostrar_logros,promedio_de_puntos_por_partido, buscar_jugador_salon_de_la_fama
+from funciones import cargar_datos, mostrar_datos, datos_jugadores, estadisticas_seleccionadas, jugador_estadisticas,cantidad_de_jugadores_por_posicion_en_la_cancha,mostrar_estadisticas_jugador, guardar_estadisticas_csv, buscar_jugador_Y_mostrar_logros,promedio_de_puntos_por_partido, buscar_jugador_salon_de_la_fama
 from funciones import jugador_con_mayores_rebotes_totales, jugador_con_mayor_porcentaje_de_tiro_de_campo, jugador_con_mayor_cantidad_de_asistencia_totales, jugadores_con_mayor_promedio_de_puntos_por_partido
 from funciones import jugador_con_mayor_cantidad_de_robos_totales,jugadores_con_mayor_promedio_de_asistencias_por_partido , jugador_con_mayor_cantidad_de_bloqueos_totales,jugadores_con_mayor_promedio_de_rebotes_por_partido , jugadores_con_mayor_porcentaje_de_tiros_libres,jugador_con_mayores_logros
-from funciones import jugadores_con_mayor_porcentaje_de_tiros_triples,promedio_de_puntos_por_partido_sin_el_de_menor_cantidad_de_puntos , jugador_con_mayor_cantidad_de_temporadas, mostrar_menu, obtener_eleccion, clear_console
+from funciones import jugadores_con_mayor_porcentaje_de_tiros_triples,imprimir_mejores_jugadores_de_su_categoria,promedio_de_puntos_por_partido_sin_el_de_menor_cantidad_de_puntos , jugador_con_mayor_cantidad_de_temporadas, mostrar_menu, obtener_eleccion
 
 datos_jugadores = cargar_datos()
 while True:
@@ -14,9 +14,8 @@ while True:
             break     
         case "2":
             mostrar_estadisticas_jugador(datos_jugadores)
-            break
         case "3":
-            guardar_estadisticas_csv(datos_jugadores)
+            guardar_estadisticas_csv(estadisticas_seleccionadas, jugador_estadisticas)
             break
         case "4":
             buscar_jugador_Y_mostrar_logros(datos_jugadores)
@@ -66,4 +65,9 @@ while True:
         case "19":
             jugador_con_mayor_cantidad_de_temporadas(datos_jugadores)
             break
-    clear_console()
+        case "24":
+            cantidad_de_jugadores_por_posicion_en_la_cancha(datos_jugadores)
+            break
+        case "25":
+            imprimir_mejores_jugadores_de_su_categoria(datos_jugadores)
+            break
