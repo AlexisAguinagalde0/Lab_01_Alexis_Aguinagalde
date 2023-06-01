@@ -222,14 +222,6 @@ def mostrar_jugadores_ordenados_por_posicion_de_cancha(datos_jugadores):
                 lista_aux[indice] = jugador["estadisticas"]["porcentaje_tiros_de_campo"]
                 print("{0}, su posición es {1}, y su porcentaje de tiros de campo es: {2}".format(jugador["nombre"], jugador["posicion"], jugador["estadisticas"]["porcentaje_tiros_de_campo"]))
 
-#EJ 23 
-def calcular_posicion_de_jugador_en_ranking():
-
-
-
-
-
-    return
 
 datos_jugadores = cargar_datos()
 ##################################################################ParcialExtra##############################################################################################

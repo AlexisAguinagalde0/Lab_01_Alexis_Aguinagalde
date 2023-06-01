@@ -322,14 +322,7 @@ def mostrar_jugadores_ordenados_por_posicion_de_cancha():
 
     return
 
-#EJ 23 
-def calcular_posicion_de_jugador_en_ranking():
 
-
-
-
-
-    return
 
     
 ##################################################################ParcialExtra##############################################################################################
