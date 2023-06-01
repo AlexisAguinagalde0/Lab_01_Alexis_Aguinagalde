@@ -232,6 +232,7 @@ def calcular_posicion_de_jugador_en_ranking():
     return
 
 datos_jugadores = cargar_datos()
+##################################################################ParcialExtra##############################################################################################
 #EJ 1
 def cantidad_de_jugadores_por_posicion_en_la_cancha(datos_jugadores):    
     dic_aux = {}
@@ -243,6 +244,16 @@ def cantidad_de_jugadores_por_posicion_en_la_cancha(datos_jugadores):
     for clave, valor in dic_aux.items():
         print("{0}: {1}".format(clave, valor))
     return
+
+#EJ 2 
+
+
+
+
+
+
+
+
 
 #EJ 3
 def obtener_mejor_jugador(datos_jugadores, clave_a_buscar):
@@ -277,6 +288,9 @@ def imprimir_mejores_jugadores_de_su_categoria(datos_jugadores):
         mejor_jugador, mejor_estadistica, formato_de_estadistica = obtener_mejor_jugador(datos_jugadores, categoria)
         print("Mejor", formato_de_estadistica + ":", mejor_jugador, "({})".format(mejor_estadistica))
 ###########################################################################################################################################################
+
+
+
 
 
 
