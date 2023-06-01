@@ -87,6 +87,7 @@ Retorna: El promedio total de puntos por partido.
 
 """
 def promedio_de_puntos_por_partido(datos_jugadores):
+    lista_aux = algoritmo_de_ordenamiento(datos_jugadores, "nombre", True)
     suma_puntos_por_partido = 0
     cantidad_puntos_por_partido = 0
     promedio_total = 0    
@@ -95,10 +96,29 @@ def promedio_de_puntos_por_partido(datos_jugadores):
             suma_puntos_por_partido += float(jugador["estadisticas"]["promedio_puntos_por_partido"])
             cantidad_puntos_por_partido += 1
     promedio_total = suma_puntos_por_partido / cantidad_puntos_por_partido
-    print("El promedio total de los jugadores es", promedio_total, "cm") 
+    promedio_total_redondeado = round(promedio_total, 2)
+    print("El promedio total de los jugadores es", promedio_total_redondeado)
+    for jugador in lista_aux:
+        print("El promedio de puntos por partido de:",jugador["nombre"],"es: ", jugador["estadisticas"]["promedio_puntos_por_partido"])
+    
 
     return promedio_total
-        
+def algoritmo_de_ordenamiento(lista, clave, flag_orden):
+    lista_nueva = lista[:]
+    rango_a = len(lista) -1 
+    flag_swap = True
+
+    while flag_swap:
+        flag_swap = False
+        for indice_A in range(rango_a): 
+            if (flag_orden == True and lista_nueva[indice_A][clave] > lista_nueva[indice_A+1][clave]) \
+                    or (flag_orden == False and lista_nueva[indice_A][clave] < lista_nueva[indice_A+1][clave]):
+                lista_nueva[indice_A], lista_nueva[indice_A+1] = lista_nueva[indice_A+1], lista_nueva[indice_A]
+                flag_swap = True
+
+    return lista_nueva
+
+
 #EJ 6
 def buscar_jugador_salon_de_la_fama(datos_jugadores):
     """
@@ -117,57 +137,26 @@ def buscar_jugador_salon_de_la_fama(datos_jugadores):
                     bandera = False
             if bandera:
                     print("El jugador", jugador["nombre"] ,"no es miembro del Salon de la Fama del Baloncesto")
-#EJ 7
-def jugador_con_mayores_rebotes_totales(datos_jugadores):
+
+#EJ 7, 8, 9 ,13, 14, 19
+def jugador_con_mayor_puntos_por_estadistica(datos_jugadores, estadistica_a_buscar):
     """
     Encuentra y muestra el jugador con la mayor cantidad de rebotes totales en la lista proporcionada.
     Parámetros: datos_jugadores (list) - Una lista de diccionarios que contiene los datos de los jugadores.
     """
-    rebotes_totales_maximos = 0
-    nombre_rebotes_maximos = None
+    estadisticas_por_tipo_maximos = 0
+    nombre_tipo_stats_maximos = None
     for jugador in datos_jugadores:
-        cantidad_rebotes = jugador["estadisticas"]["rebotes_totales"]
-        if cantidad_rebotes > rebotes_totales_maximos :
-            rebotes_totales_maximos = cantidad_rebotes   
-            nombre_rebotes_maximos = jugador["nombre"]
+        cantidad_tipo_stats = jugador["estadisticas"][estadistica_a_buscar]
+        if cantidad_tipo_stats > estadisticas_por_tipo_maximos :
+            estadisticas_por_tipo_maximos = cantidad_tipo_stats   
+            nombre_tipo_stats_maximos = jugador["nombre"]
+            estadistica_format = (str(estadistica_a_buscar).replace("_", " ")).capitalize()
 
-    print(nombre_rebotes_maximos, rebotes_totales_maximos)
+    print("El jugador con mayor cantidad de", estadistica_format, "es",nombre_tipo_stats_maximos,"con:",estadisticas_por_tipo_maximos)
 
-#EJ 8
-def jugador_con_mayor_porcentaje_de_tiro_de_campo(datos_jugadores):
-    """
-    Esta función recibe una lista de datos de jugadores y encuentra al jugador con el mayor porcentaje de tiros de campo.
-    Parametros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
-    
-    """
-    porcentaje_maximo = 0
-    nombre_porcentaje_maximo = None
-    for jugador in datos_jugadores:
-        cantidad_porcentajes = jugador["estadisticas"]["porcentaje_tiros_de_campo"]
-        if cantidad_porcentajes > porcentaje_maximo :
-            porcentaje_maximo = cantidad_porcentajes   
-            nombre_porcentaje_maximo = jugador["nombre"]
-
-    print(nombre_porcentaje_maximo, porcentaje_maximo)
-
-#EJ 9
-def jugador_con_mayor_cantidad_de_asistencia_totales(datos_jugadores):
-    """
-    Esta función recibe una lista de datos de jugadores y encuentra al jugador con la mayor cantidad de asistencias totales.
-    Parámetros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
-    """
-    asistencias_maximas = 0
-    nombre_asistencias_maximas = None
-    for jugador in datos_jugadores:
-        cantidad_asistencias = jugador["estadisticas"]["asistencias_totales"]
-        if cantidad_asistencias > asistencias_maximas :
-            asistencias_maximas = cantidad_asistencias   
-            nombre_asistencias_maximas = jugador["nombre"]
-
-    print(nombre_asistencias_maximas, asistencias_maximas)
-
-#EJ 10 
-def jugadores_con_mayor_promedio_de_puntos_por_partido(datos_jugadores):
+#EJ 10, 11, 12, 15, 18
+def jugadores_con_mayor_promedio_de_stats(datos_jugadores, promedio_a_comparar):
     """
     Esta función recibe una lista de datos de jugadores y solicita al usuario ingresar un valor a comparar. Luego, encuentra a los jugadores cuyo promedio de puntos por partido es mayor que el valor ingresado.
     Parámetros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
@@ -175,76 +164,12 @@ def jugadores_con_mayor_promedio_de_puntos_por_partido(datos_jugadores):
     valor_a_ingresar = int(input("Ingrese un valor a comparar: "))
     lista_aux = {}
     for jugador in datos_jugadores:
-        if valor_a_ingresar < jugador["estadisticas"]["promedio_puntos_por_partido"]:
-            lista_aux[jugador["nombre"]] = jugador["estadisticas"]["promedio_puntos_por_partido"]
-    print(lista_aux)
-#EJ 11
-def jugadores_con_mayor_promedio_de_rebotes_por_partido(datos_jugadores):
-    """
-    Esta función recibe una lista de datos de jugadores y solicita al usuario ingresar un valor a comparar. Luego, encuentra a los jugadores cuyo promedio de rebotes por partido es mayor que el valor ingresado.
-    Parámetros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
-    """
-    valor_a_ingresar = int(input("Ingrese un valor a comparar: "))
-    lista_aux = {}
-    for jugador in datos_jugadores:
-        if valor_a_ingresar < jugador["estadisticas"]["promedio_rebotes_por_partido"]:
-            lista_aux[jugador["nombre"]] = jugador["estadisticas"]["promedio_rebotes_por_partido"]
-    print(lista_aux)
-#EJ 12
-def jugadores_con_mayor_promedio_de_asistencias_por_partido(datos_jugadores):
-    """
-    Esta función recibe una lista de datos de jugadores y solicita al usuario ingresar un valor a comparar. Luego, encuentra a los jugadores cuyo promedio de asistencias por partido es mayor que el valor ingresado.
-    Parámetros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
-    """
-    valor_a_ingresar = int(input("Ingrese un valor a comparar: "))
-    lista_aux = {}
-    for jugador in datos_jugadores:
-        if valor_a_ingresar < jugador["estadisticas"]["promedio_asistencias_por_partido"]:
-            lista_aux[jugador["nombre"]] = jugador["estadisticas"]["promedio_asistencias_por_partido"]
-    print(lista_aux)
-#EJ 13 
-def jugador_con_mayor_cantidad_de_robos_totales(datos_jugadores):
-    """
-    Esta función recibe una lista de datos de jugadores y encuentra al jugador con la mayor cantidad de robos totales.
-    Parámetros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
-    """
-    robos_maximos = 0
-    nombre_robos_maximos = None
-    for jugador in datos_jugadores:
-        cantidad_robos_totales = jugador["estadisticas"]["robos_totales"]
-        if cantidad_robos_totales > robos_maximos :
-            robos_maximos = cantidad_robos_totales   
-            nombre_robos_maximos = jugador["nombre"]
+        if valor_a_ingresar < jugador["estadisticas"][promedio_a_comparar]:
+            lista_aux[jugador["nombre"]] = jugador["estadisticas"][promedio_a_comparar]
+    for clave, valor in lista_aux.items():
+        print("{0}: {1}".format(clave, valor))
+    return 
 
-    print(nombre_robos_maximos, robos_maximos)
-#EJ 14
-def jugador_con_mayor_cantidad_de_bloqueos_totales(datos_jugadores):
-    """
-    Esta función recibe una lista de datos de jugadores y encuentra al jugador con la mayor cantidad de bloqueos totales.
-    Parámetros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
-    """
-    bloqueos_maximos = 0
-    nombre_bloqueos_maximos = None
-    for jugador in datos_jugadores:
-        cantidad_bloqueos_totales = jugador["estadisticas"]["bloqueos_totales"]
-        if cantidad_bloqueos_totales > bloqueos_maximos :
-            bloqueos_maximos = cantidad_bloqueos_totales   
-            nombre_bloqueos_maximos = jugador["nombre"]
-
-    print(nombre_bloqueos_maximos, bloqueos_maximos)
-    
-#EJ 15
-def jugadores_con_mayor_porcentaje_de_tiros_libres(datos_jugadores):
-    """
-    Esta función recibe una lista de datos de jugadores y solicita al usuario ingresar un valor a comparar. Luego, encuentra a los jugadores cuyo porcentaje de tiros libres es mayor que el valor ingresado.
-    Parámetros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
-    """
-    valor_a_ingresar = int(input("Ingrese un valor a comparar: "))
-    lista_aux = {}
-    for jugador in datos_jugadores:
-        if valor_a_ingresar < jugador["estadisticas"]["porcentaje_tiros_libres"]:
-            lista_aux[jugador["nombre"]] = jugador["estadisticas"]["porcentaje_tiros_libres"]
-    print(lista_aux)
 #EJ 16
 def promedio_de_puntos_por_partido_sin_el_de_menor_cantidad_de_puntos(datos_jugadores):
     """
@@ -286,41 +211,16 @@ def jugador_con_mayores_logros(datos_jugadores):
             nombre_logros_maximos = jugador["nombre"]
 
     print(nombre_logros_maximos, logros_maximos)
-#EJ 18
-def jugadores_con_mayor_porcentaje_de_tiros_triples(datos_jugadores):
-    """
-    Esta función recibe una lista de datos de jugadores y solicita al usuario ingresar un valor a comparar. Luego, encuentra a los jugadores cuyo porcentaje de tiros triples es mayor que el valor ingresado.
-    Parámetros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
-    """
-    valor_a_ingresar = int(input("Ingrese un valor a comparar: "))
-    lista_aux = {}
-    for jugador in datos_jugadores:
-        if valor_a_ingresar < jugador["estadisticas"]["porcentaje_tiros_triples"]:
-            lista_aux[jugador["nombre"]] = jugador["estadisticas"]["porcentaje_tiros_triples"]
-    print(lista_aux)
-#EJ 19
-def jugador_con_mayor_cantidad_de_temporadas(datos_jugadores):
-    """
-    Esta función recibe una lista de datos de jugadores y encuentra al jugador con la mayor cantidad de temporadas.
-    Parámetros: datos_jugadores: Una lista de datos de jugadores que contiene información sobre el nombre y las estadísticas de cada jugador.
-    """
-    temporadas_maximos = 0
-    nombre_temporadas_maximos = None
-    for jugador in datos_jugadores:
-        cantidad_temporadas = jugador["estadisticas"]["temporadas"]
-        if cantidad_temporadas > temporadas_maximos :
-            temporadas_maximos = cantidad_temporadas   
-            nombre_temporadas_maximos = jugador["nombre"]
-    print(nombre_temporadas_maximos, temporadas_maximos)
+
 
 #EJ 20
-def mostrar_jugadores_ordenados_por_posicion_de_cancha():
-
-
-
-
-
-    return
+def mostrar_jugadores_ordenados_por_posicion_de_cancha(datos_jugadores):
+    lista_aux = algoritmo_de_ordenamiento(datos_jugadores, "posicion", True)
+    valor_a_comparar = int(input("Ingrese un valor para comparar: "))
+    for indice, jugador in enumerate(lista_aux):
+            if valor_a_comparar < jugador["estadisticas"]["porcentaje_tiros_de_campo"]:
+                lista_aux[indice] = jugador["estadisticas"]["porcentaje_tiros_de_campo"]
+                print("{0}, su posición es {1}, y su porcentaje de tiros de campo es: {2}".format(jugador["nombre"], jugador["posicion"], jugador["estadisticas"]["porcentaje_tiros_de_campo"]))
 
 #EJ 23 
 def calcular_posicion_de_jugador_en_ranking():
@@ -331,8 +231,7 @@ def calcular_posicion_de_jugador_en_ranking():
 
     return
 
-    
-##################################################################ParcialExtra##############################################################################################
+datos_jugadores = cargar_datos()
 #EJ 1
 def cantidad_de_jugadores_por_posicion_en_la_cancha(datos_jugadores):    
     dic_aux = {}
@@ -419,3 +318,4 @@ def obtener_eleccion():
     return respuesta
 
 
+datos_jugadores = cargar_datos()
