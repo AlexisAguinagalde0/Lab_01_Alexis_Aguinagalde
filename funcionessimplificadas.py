@@ -42,20 +42,24 @@ def mostrar_estadisticas_jugador(datos_jugadores):
         estadisticas_seleccionadas = True       
     else:    
         print("¡Índice inválido!")
-        jugador_seleccionado = None
-        estadisticas_seleccionadas = False
-    return jugador_estadisticas, estadisticas_seleccionadas
+        return mostrar_estadisticas_jugador(datos_jugadores)
+    return jugador_estadisticas, estadisticas_seleccionadas, jugador_seleccionado
         
 #EJ 3
 def guardar_estadisticas_csv(estadisticas_seleccionadas, jugador_estadisticas):
-    if estadisticas_seleccionadas:
-        nombre_archivo = input("Ingrese el nombre del archivo CSV: ")
-        with open(nombre_archivo, 'w', newline='') as archivo_csv:
-            writer = csv.writer(archivo_csv)
-            for key, value in jugador_estadisticas.items():
-                writer.writerow([key, value])
-        print("Archivo csv creado")
-    return
+    if not estadisticas_seleccionadas:
+        jugador_estadisticas, estadisticas_seleccionadas, jugador_seleccionado = mostrar_estadisticas_jugador(datos_jugadores)
+    if jugador_estadisticas:
+        with open("estadisticas.csv", "w", newline="") as file:
+            writer = csv.writer(file)
+            file.write(jugador_seleccionado["nombre"])
+            file.write("\n")
+            for clave, valor in jugador_estadisticas.items():
+                clave_formateada = clave.replace("_", " ").capitalize()
+                writer.writerow([clave_formateada, valor])
+        print("Archivo CSV creado exitosamente.")
+    else:
+        print("No se seleccionaron estadísticas.")
 
 #EJ 4
 def buscar_jugador_Y_mostrar_logros(datos_jugadores):
@@ -238,13 +242,19 @@ def cantidad_de_jugadores_por_posicion_en_la_cancha(datos_jugadores):
     return
 
 #EJ 2 
-
-
-
-
-
-
-
+def mostrar_jugadores_allstar_descendentes(datos_jugadores):
+    for jugador in datos_jugadores:
+    
+        logros = jugador["logros"]
+        veces_all_star = None
+        for logro in logros:
+            if "veces All-Star" in logro:
+                veces_all_star = int(logro.split()[0])
+                break
+        if veces_all_star is not None:
+            print("{0} ({1} veces All-Star)".format(jugador["nombre"], veces_all_star)) 
+        else:
+            print("No se encontraron datos sobre las veces All-Star del jugador: {0}.".format(jugador["nombre"]))
 
 
 #EJ 3
@@ -259,7 +269,6 @@ def obtener_mejor_jugador(datos_jugadores, clave_a_buscar):
             formato_de_estadistica = (str(clave_a_buscar).replace("_", " ")).capitalize()
     # print("Mejor",formato_de_estadistica,":" ,mejor_jugador, mejor_estadistica)
     return mejor_jugador, mejor_estadistica, formato_de_estadistica
-
 
 def imprimir_mejores_jugadores_de_su_categoria(datos_jugadores):
     categorias = [
@@ -279,6 +288,22 @@ def imprimir_mejores_jugadores_de_su_categoria(datos_jugadores):
     for categoria in categorias:
         mejor_jugador, mejor_estadistica, formato_de_estadistica = obtener_mejor_jugador(datos_jugadores, categoria)
         print("Mejor", formato_de_estadistica + ":", mejor_jugador, "({})".format(mejor_estadistica))
+
+
+#EJ 4
+def muestra_mejor_jugador_estadistica(datos_jugadores):  
+     max_jugador = None 
+     max_puntaje = 0 
+  
+     for jugador in datos_jugadores: 
+         estadistica_total = 0 
+         for clave,valor in jugador["estadisticas"].items(): 
+             estadistica_total += valor 
+         if max_jugador == None or estadistica_total > max_puntaje: 
+             max_jugador = jugador["nombre"] 
+             max_puntaje = estadistica_total 
+     print("El que tiene las mejores estadisticas sobre el resto de jugadores es: {0}".format(max_jugador))
+
 ###########################################################################################################################################################
 
 
