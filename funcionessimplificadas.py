@@ -243,8 +243,8 @@ def cantidad_de_jugadores_por_posicion_en_la_cancha(datos_jugadores):
 
 #EJ 2 
 def mostrar_jugadores_allstar_descendentes(datos_jugadores):
+    jugadores_allstar = []
     for jugador in datos_jugadores:
-    
         logros = jugador["logros"]
         veces_all_star = None
         for logro in logros:
@@ -252,11 +252,10 @@ def mostrar_jugadores_allstar_descendentes(datos_jugadores):
                 veces_all_star = int(logro.split()[0])
                 break
         if veces_all_star is not None:
-            print("{0} ({1} veces All-Star)".format(jugador["nombre"], veces_all_star)) 
-        else:
-            print("No se encontraron datos sobre las veces All-Star del jugador: {0}.".format(jugador["nombre"]))
-
-
+            jugadores_allstar.append((jugador["nombre"], veces_all_star))  
+    jugadores_allstar_ordenados = algoritmo_de_ordenamiento(jugadores_allstar, 1, False)  
+    for jugador in jugadores_allstar_ordenados:
+        print("{0} ({1} veces All-Star)".format(jugador[0], jugador[1]))  
 #EJ 3
 def obtener_mejor_jugador(datos_jugadores, clave_a_buscar):
     mejor_jugador = ""
@@ -327,7 +326,7 @@ def mostrar_menu():
     print("17. Mostrar jugador con mayor cantidad de Logros obtenidos. \n18. Ingresa un valor para comparar que jugadores que tienen un porcentaje de tiros triples mayor que el valor ingresado.\n19. Mostrar jugador con mayor cantidad de Temporadas Jugadas")
     print("20. Ingresar un valor para ordenar jugadores por su posicion en la cancha, que tienen un porcentaje de tiros de campo superior a el valor ingresado")
     print("EXTRAS")
-    print("1. Determinar cantidad de jugadores por posicion. \n2. Mostrar lista de jugadores ordenados por cantidad de All-Stars. \n3. Determina qué jugador tiene las mejores estadísticas de cada tipo.\n4. Determinar que jugador tiene las mejores estadisticas sobre los demas.")
+    print("21. Determinar cantidad de jugadores por posicion. \n22. Mostrar lista de jugadores ordenados por cantidad de All-Stars. \n23. Determina qué jugador tiene las mejores estadísticas de cada tipo.\n24. Determinar que jugador tiene las mejores estadisticas sobre los demas.")
     print("=======================================================================================================================")
     
 def clear_console() -> None:

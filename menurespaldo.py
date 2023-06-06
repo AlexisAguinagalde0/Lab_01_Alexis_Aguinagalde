@@ -1,6 +1,6 @@
 from funcionessimplificadas import mostrar_menu, obtener_eleccion, datos_jugadores, mostrar_datos, mostrar_estadisticas_jugador, guardar_estadisticas_csv, estadisticas_seleccionadas, jugador_estadisticas
 from funcionessimplificadas import buscar_jugador_Y_mostrar_logros, buscar_jugador_salon_de_la_fama, promedio_de_puntos_por_partido, jugador_con_mayor_puntos_por_estadistica, jugadores_con_mayor_promedio_de_stats
-from funcionessimplificadas import promedio_de_puntos_por_partido_sin_el_de_menor_cantidad_de_puntos,jugador_con_mayores_logros,mostrar_jugadores_ordenados_por_posicion_de_cancha
+from funcionessimplificadas import promedio_de_puntos_por_partido_sin_el_de_menor_cantidad_de_puntos,jugador_con_mayores_logros,mostrar_jugadores_ordenados_por_posicion_de_cancha, cantidad_de_jugadores_por_posicion_en_la_cancha,mostrar_jugadores_allstar_descendentes, imprimir_mejores_jugadores_de_su_categoria, muestra_mejor_jugador_estadistica
 
 
 while True:
@@ -65,3 +65,11 @@ while True:
             break
         case "20":
             mostrar_jugadores_ordenados_por_posicion_de_cancha(datos_jugadores)
+        case "21":
+            cantidad_de_jugadores_por_posicion_en_la_cancha(datos_jugadores)
+        case "22":
+            mostrar_jugadores_allstar_descendentes(datos_jugadores)
+        case "23":
+            imprimir_mejores_jugadores_de_su_categoria(datos_jugadores)
+        case "24":
+            muestra_mejor_jugador_estadistica(datos_jugadores)
