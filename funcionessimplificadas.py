@@ -326,6 +326,8 @@ def mostrar_menu():
     print("15. Ingresa un valor para comparar que jugadores que tienen un porcentaje de tiros libres mayor que el valor ingresado. \n16. Mostrar promedio de puntos por partido excluyendo al jugador con menor cantidad de puntos por partido")
     print("17. Mostrar jugador con mayor cantidad de Logros obtenidos. \n18. Ingresa un valor para comparar que jugadores que tienen un porcentaje de tiros triples mayor que el valor ingresado.\n19. Mostrar jugador con mayor cantidad de Temporadas Jugadas")
     print("20. Ingresar un valor para ordenar jugadores por su posicion en la cancha, que tienen un porcentaje de tiros de campo superior a el valor ingresado")
+    print("EXTRAS")
+    print("1. Determinar cantidad de jugadores por posicion. \n2. Mostrar lista de jugadores ordenados por cantidad de All-Stars. \n3. Determina qué jugador tiene las mejores estadísticas de cada tipo.\n4. Determinar que jugador tiene las mejores estadisticas sobre los demas.")
     print("=======================================================================================================================")
     
 def clear_console() -> None:
