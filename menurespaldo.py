@@ -65,11 +65,16 @@ while True:
             break
         case "20":
             mostrar_jugadores_ordenados_por_posicion_de_cancha(datos_jugadores)
+            break
         case "21":
             cantidad_de_jugadores_por_posicion_en_la_cancha(datos_jugadores)
+            break
         case "22":
             mostrar_jugadores_allstar_descendentes(datos_jugadores)
+            break
         case "23":
             imprimir_mejores_jugadores_de_su_categoria(datos_jugadores)
+            break
         case "24":
             muestra_mejor_jugador_estadistica(datos_jugadores)
+            break
